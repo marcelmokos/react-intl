@@ -46,7 +46,7 @@ describe('<FormattedMessage>', () => {
 
         renderer.render(el, {intl});
         expect(renderer.getRenderOutput()).toEqualJSX(
-            <span>{intl.formatMessage(descriptor)}</span>
+            <span data-message-id={descriptor.id}>{intl.formatMessage(descriptor)}</span>
         );
     });
 
@@ -158,7 +158,7 @@ describe('<FormattedMessage>', () => {
 
         renderer.render(el, {intl});
         expect(renderer.getRenderOutput()).toEqualJSX(
-            <span>{intl.formatMessage(descriptor, values)}</span>
+            <span data-message-id={descriptor.id}>{intl.formatMessage(descriptor, values)}</span>
         );
     });
 
@@ -193,7 +193,7 @@ describe('<FormattedMessage>', () => {
 
         renderer.render(el, {intl});
         expect(renderer.getRenderOutput()).toEqualJSX(
-            <p>{intl.formatMessage(descriptor)}</p>
+            <p data-message-id={descriptor.id}>{intl.formatMessage(descriptor)}</p>
         );
     });
 
@@ -236,7 +236,7 @@ describe('<FormattedMessage>', () => {
 
         expect(rendered.props.children).toBeAn('array');
         expect(rendered).toEqualJSX(
-            <span>Hello, <b>Eric</b>!</span>
+            <span data-message-id="hello">Hello, <b>Eric</b>!</span>
         );
     });
 

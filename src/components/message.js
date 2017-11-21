@@ -132,6 +132,6 @@ export default class FormattedMessage extends Component {
 
     // Needs to use `createElement()` instead of JSX, otherwise React will
     // warn about a missing `key` prop with rich-text message formatting.
-    return createElement(Component, null, ...nodes);
+    return createElement(Component, {"data-message-id": id}, ...nodes);
   }
 }

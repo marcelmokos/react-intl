@@ -94,7 +94,7 @@ export default function (ReactIntl) {
 
             renderer.render(el, intlProvider.getChildContext());
             expect(renderer.getRenderOutput()).toEqualJSX(
-                <span>You have 1,000 emails.</span>
+                <span data-message-id={"num_emails"}>You have 1,000 emails.</span>
             );
         });
     });
