@@ -3,10 +3,13 @@ React Intl with data-message-id
 
 Same as React Intl but rendering data-message-id to translations
 ```html
-<FormattedMessage id="hello" />
+<FormattedMessage 
+  id="app.greeting" 
+  defaultMessage="Hello" 
+/>
 
 // will render
-<span data-message-id="hello">Hello</span>
+<span data-message-id="app.greeting">Hello</span>
 ```
 -------
 
