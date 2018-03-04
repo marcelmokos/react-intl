@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:yahoo/react-intl.git"
+    "url": "git@github.com:marcelmokos/react-intl-with-data-message-id.git"
   },
   "main": "./lib/index.js",
   "module": "./lib/index.es.js",
