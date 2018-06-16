@@ -130,7 +130,7 @@ export default class FormattedMessage extends Component {
       return children(...nodes);
     }
 
-    const props = hasDataMessageId ? {"data-message-id": id} : {};
+    const props = hasDataMessageId !== false ? {"data-message-id": id} : {};
 
     // Needs to use `createElement()` instead of JSX, otherwise React will
     // warn about a missing `key` prop with rich-text message formatting.

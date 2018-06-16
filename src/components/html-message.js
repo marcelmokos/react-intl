@@ -70,7 +70,7 @@ export default class FormattedHTMLMessage extends Component {
     let descriptor = {id, description, defaultMessage};
     let formattedHTMLMessage = formatHTMLMessage(descriptor, rawValues);
 
-    const props = hasDataMessageId ? {"data-message-id": id} : {};
+    const props = hasDataMessageId !== false ? {"data-message-id": id} : {};
 
     if (typeof children === 'function') {
       return children({
