@@ -46,7 +46,7 @@ describe('<FormattedHTMLMessage>', () => {
 
         renderer.render(el, {intl});
         expect(renderer.getRenderOutput()).toEqualJSX(
-            <span
+            <span data-message-id="hello"
                 dangerouslySetInnerHTML={{
                     __html: intl.formatHTMLMessage(descriptor),
                 }}
@@ -118,7 +118,7 @@ describe('<FormattedHTMLMessage>', () => {
 
         renderer.render(el, {intl});
         expect(renderer.getRenderOutput()).toEqualJSX(
-            <span
+            <span data-message-id="hello"
                 dangerouslySetInnerHTML={{
                     __html: intl.formatHTMLMessage(descriptor, values),
                 }}
@@ -163,7 +163,7 @@ describe('<FormattedHTMLMessage>', () => {
             'Hello, <b>&lt;i&gt;Eric&lt;/i&gt;</b>!'
         );
         expect(rendered).toEqualJSX(
-            <span
+            <span data-message-id="hello"
                 dangerouslySetInnerHTML={{
                     __html: intl.formatHTMLMessage(descriptor, values),
                 }}
@@ -182,7 +182,7 @@ describe('<FormattedHTMLMessage>', () => {
 
         renderer.render(el, {intl});
         expect(renderer.getRenderOutput()).toEqualJSX(
-            <p
+            <p data-message-id="hello"
                 dangerouslySetInnerHTML={{
                     __html: intl.formatHTMLMessage(descriptor),
                 }}
@@ -199,15 +199,15 @@ describe('<FormattedHTMLMessage>', () => {
 
         const el = (
             <FormattedHTMLMessage {...descriptor}>
-                {(formattedHTMLMessage) => (
-                    <i dangerouslySetInnerHTML={{__html: formattedHTMLMessage}} />
+                {({props, formattedHTMLMessage}) => (
+                    <i {...props} dangerouslySetInnerHTML={{__html: formattedHTMLMessage}} />
                 )}
             </FormattedHTMLMessage>
         );
 
         renderer.render(el, {intl});
         expect(renderer.getRenderOutput()).toEqualJSX(
-            <i
+            <i data-message-id={descriptor.id}
                 dangerouslySetInnerHTML={{
                     __html: intl.formatHTMLMessage(descriptor),
                 }}
@@ -232,7 +232,7 @@ describe('<FormattedHTMLMessage>', () => {
         const rendered = renderer.getRenderOutput();
 
         expect(rendered).toEqualJSX(
-            <span
+            <span data-message-id="hello"
                 dangerouslySetInnerHTML={{
                     __html: 'Hello, <b>[object Object]</b>!',
                 }}

@@ -11,6 +11,24 @@ Same as React Intl but rendering data-message-id to translations
 // will render
 <span data-message-id="app.greeting">Hello</span>
 ```
+
+Modified support for function-as-child pattern (render props)
+```html
+<FormattedHTMLMessage 
+  id="app.HtmlGreeting" 
+  defaultMessage="Hello, <b>World</b>!"
+>
+ {({props, formattedHTMLMessage}) => (
+   <i {...props} dangerouslySetInnerHTML={{__html: formattedHTMLMessage}} />
+ )}
+</FormattedHTMLMessage>
+
+// will render
+<i data-message-id="app.HtmlGreeting">
+  Hello, <b>World</b>!
+</i>
+```
+
 -------
 
 Internationalize [React][] apps. This library provides React components and an API to format dates, numbers, and strings, including pluralization and handling translations.

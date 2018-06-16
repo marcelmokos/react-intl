@@ -25,6 +25,7 @@ const defaultProps = {
   formats: {},
   messages: {},
   textComponent: 'span',
+  hasDataMessageId: true,
 
   defaultLocale: 'en',
   defaultFormats: {},

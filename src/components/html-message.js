@@ -56,7 +56,7 @@ export default class FormattedHTMLMessage extends Component {
   }
 
   render() {
-    const {formatHTMLMessage, textComponent: Text} = this.context.intl;
+    const {formatHTMLMessage, hasDataMessageId, textComponent: Text} = this.context.intl;
 
     const {
       id,
@@ -70,8 +70,14 @@ export default class FormattedHTMLMessage extends Component {
     let descriptor = {id, description, defaultMessage};
     let formattedHTMLMessage = formatHTMLMessage(descriptor, rawValues);
 
+    const props = hasDataMessageId ? {"data-message-id": id} : {};
+
     if (typeof children === 'function') {
-      return children(formattedHTMLMessage);
+      return children({
+        id,
+        props,
+        formattedHTMLMessage,
+      });
     }
 
     // Since the message presumably has HTML in it, we need to set
@@ -83,6 +89,9 @@ export default class FormattedHTMLMessage extends Component {
     // Note: There's a perf impact of using this component since there's no
     // way for React to do its virtual DOM diffing.
     const html = {__html: formattedHTMLMessage};
-    return <Component dangerouslySetInnerHTML={html} />;
+    return <Component
+      {...props}
+      dangerouslySetInnerHTML={html}
+    />;
   }
 }
