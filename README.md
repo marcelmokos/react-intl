@@ -48,14 +48,19 @@ Internationalize [React][] apps. This library provides React components and an A
 [![Build Status][travis-badge]][travis]
 [![Dependency Status][david-badge]][david]
 
-[![Sauce Test Status][sauce-badge]][sauce]
-
 Overview
 --------
 
-**React Intl is part of [FormatJS][], the docs can be found on the website:**
+**React Intl is part of [FormatJS][].** It provides bindings to React via its components and API.
 
-**<http://formatjs.io/react/>**
+**Slack:** Join us on Slack at [react-intl.slack.com](https://react-intl.slack.com/) for help, general conversation and more 💬🎊🎉
+You can sign-up using this [invitation link](https://join.slack.com/t/react-intl/shared_invite/enQtNDAxMjc5MTQxMDkwLWNiYWM5Njc5NjA3ZWVkOTQ3MzBhYjFlY2NkNmM3NzEyNDUzZmNhZDE2MmUwNWVjYmExMWUxZTRhMzEzMWYxYzY).
+
+### [Documentation][]
+
+React Intl's docs are in this GitHub repo's [Wiki][Documentation], [__Get Started__][Getting Started]. There are also several [runnable example apps][Examples] which you can reference to learn how all the pieces fit together.
+
+_(If you're looking for React Intl v1, you can find it [here][v1-docs].)_
 
 ### Features
 
@@ -69,47 +74,53 @@ Overview
 
 ### Example
 
-There are many examples [on the website][React Intl], but here's a comprehensive one:
+There are several [runnable examples][Examples] in this Git repo, but here's a Hello World one:
 
-```jsx
-var IntlMixin         = ReactIntl.IntlMixin;
-var FormattedMessage  = ReactIntl.FormattedMessage;
-var FormattedRelative = ReactIntl.FormattedRelative;
+```js
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import {IntlProvider, FormattedMessage} from 'react-intl';
 
-var PostMeta = React.createClass({
-    mixins: [IntlMixin],
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name       : 'Eric',
+            unreadCount: 1000,
+        };
+    }
 
-    render: function () {
+    render() {
+        const {name, unreadCount} = this.state;
+
         return (
-            <FormattedMessage
-                message={this.getIntlMessage('post.meta')}
-                num={this.props.post.comments.length}
-                ago={<FormattedRelative value={this.props.post.date} />} />
+            <p>
+                <FormattedMessage
+                    id="welcome"
+                    defaultMessage={`Hello {name}, you have {unreadCount, number} {unreadCount, plural,
+                      one {message}
+                      other {messages}
+                    }`}
+                    values={{name: <b>{name}</b>, unreadCount}}
+                />
+            </p>
         );
     }
-});
+}
 
-var post = {
-    date    : 1422046290531,
-    comments: [/*...*/]
-};
-
-var intlData = {
-    locales : ['en-US'],
-    messages: {
-        post: {
-            meta: 'Posted {ago}, {num, plural, one{# comment} other{# comments}}'
-        }
-    }
-};
-
-React.render(
-    <PostMeta post={post} {...intlData} />,
+ReactDOM.render(
+    <IntlProvider locale="en">
+        <App />
+    </IntlProvider>,
     document.getElementById('container')
 );
+
 ```
 
-This example would render: **"Posted 3 days ago, 1,000 comments"** into the container element on the page. The `post.meta` message is written in the industry standard [ICU Message syntax][], which you can also learn about on the [FormatJS website][FormatJS].
+This example would render: "Hello **Eric**, you have 1,000 messages." into the container element on the page.
+
+**Pluralization rules:** In some languages you have more than `one` and `other`. For example in `ru` there are the following plural rules: `one`, `few`, `many` and `other`.
+Check out the official [Unicode CLDR documentation](http://www.unicode.org/cldr/charts/28/supplemental/language_plural_rules.html).
 
 Contribute
 ---------
@@ -126,18 +137,18 @@ This software is free to use under the Yahoo Inc. BSD license.
 See the [LICENSE file][] for license text and copyright information.
 
 
-[React Intl]: http://formatjs.io/react/
 [npm]: https://www.npmjs.org/package/react-intl
 [npm-badge]: https://img.shields.io/npm/v/react-intl.svg?style=flat-square
 [david]: https://david-dm.org/yahoo/react-intl
 [david-badge]: https://img.shields.io/david/yahoo/react-intl.svg?style=flat-square
 [travis]: https://travis-ci.org/yahoo/react-intl
-[travis-badge]: https://img.shields.io/travis/yahoo/react-intl/1.x.svg?style=flat-square
-[sauce]: https://saucelabs.com/u/react-intl
-[sauce-badge]: https://saucelabs.com/browser-matrix/react-intl.svg
+[travis-badge]: https://img.shields.io/travis/yahoo/react-intl/master.svg?style=flat-square
 [React]: http://facebook.github.io/react/
 [FormatJS]: http://formatjs.io/
 [FormatJS GitHub]: http://formatjs.io/github/
-[ICU Message syntax]: http://formatjs.io/guide/#messageformat-syntax
+[Documentation]: https://github.com/yahoo/react-intl/wiki
+[Getting Started]: https://github.com/yahoo/react-intl/wiki#getting-started
+[Examples]: https://github.com/yahoo/react-intl/tree/master/examples
+[v1-docs]: http://formatjs.io/react/v1/
 [CONTRIBUTING]: https://github.com/yahoo/react-intl/blob/master/CONTRIBUTING.md
 [LICENSE file]: https://github.com/yahoo/react-intl/blob/master/LICENSE.md
