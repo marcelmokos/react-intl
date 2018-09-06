@@ -6,3 +6,4 @@ node_modules/
 src/en.js
 .idea/
 yarn.lock
+package-lock.json
