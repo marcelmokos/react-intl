@@ -145,7 +145,7 @@
     "test:perf": "cross-env NODE_ENV=production babel-node test/perf",
     "examples:install": "babel-node scripts/examples npm install",
     "examples:link": "npm link && babel-node scripts/examples npm link react-intl",
-    "preversion": "npm run clean && npm run build && npm run test:all",
+    "preversion": "npm run clean && npm run build && npm run test",
     "prepublish": "npm run clean && npm run build",
     "release-patch": "npm version patch -m \"Upgrade to %s\" && npm publish",
     "release-minor": "npm version minor -m \"Upgrade to %s\" && npm publish",
