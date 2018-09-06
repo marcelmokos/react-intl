@@ -1,7 +1,7 @@
 {
   "name": "react-intl-with-data-message-id",
   "version": "2.4.3",
-  "description": "Internationalize React apps. This library provides React components and an API to format dates, numbers, and strings, including pluralization and handling translations.",
+  "description": "React Components for internationalization.",
   "keywords": [
     "intl",
     "i18n",
@@ -69,16 +69,16 @@
     "intl-messageformat": "^2.1.0",
     "intl-relativeformat": "^2.1.0",
     "invariant": "^2.1.1",
-    "react-addons-test-utils": "^0.14.8"
+    "react-addons-test-utils": "^15.6.2"
   },
   "peerDependencies": {
-    "react": "^0.14.9 || ^15.0.0 || ^16.0.0",
-    "prop-types": "^15.5.4"
+    "prop-types": "^15.5.4",
+    "react": "^0.14.9 || ^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.2.0",
     "babel-eslint": "^7.1.1",
-    "babel-jest": "^19.0.0",
+    "babel-jest": "^23.4.2",
     "babel-plugin-external-helpers": "^6.18.0",
     "babel-plugin-react-intl": "^2.0.0",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
@@ -87,7 +87,7 @@
     "babel-plugin-transform-es3-member-expression-literals": "^6.3.13",
     "babel-plugin-transform-es3-property-literals": "^6.3.13",
     "babel-plugin-transform-object-rest-spread": "^6.1.18",
-    "babel-plugin-transform-react-remove-prop-types": "^0.3.2",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.15",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
     "babelify": "^7.2.0",
@@ -104,7 +104,7 @@
     "glob": "^7.0.0",
     "intl": "^1.2.1",
     "intl-messageformat-parser": "^1.2.0",
-    "jest": "^19.0.0",
+    "jest": "^23.5.0",
     "mkdirp": "^0.5.1",
     "prettier": "^1.6.1",
     "prop-types": "^15.5.4",
