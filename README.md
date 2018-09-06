@@ -29,6 +29,17 @@ Modified support for function-as-child pattern (render props)
 </i>
 ```
 
+Nice introduction to react-intl:
+
+https://medium.com/ableneo/utilize-react-intl-for-content-management-fe3e479f8475
+[![Nice introduction to react-intl](https://cdn-images-1.medium.com/max/800/1*dykklO0pTf1Q66-tjeFceg.jpeg)](https://medium.com/ableneo/utilize-react-intl-for-content-management-fe3e479f8475)
+ 
+Content management using react-intl:
+
+https://medium.com/ableneo/internationalize-react-apps-done-right-using-react-intl-library-82978dbe175e
+[![Content management using react-intl](https://cdn-images-1.medium.com/max/800/1*FF3RCZlMnHZ8rhACp-qJjg.jpeg)](https://medium.com/ableneo/internationalize-react-apps-done-right-using-react-intl-library-82978dbe175e)
+ 
+
 -------
 
 Internationalize [React][] apps. This library provides React components and an API to format dates, numbers, and strings, including pluralization and handling translations.
