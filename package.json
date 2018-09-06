@@ -146,6 +146,9 @@
     "examples:install": "babel-node scripts/examples npm install",
     "examples:link": "npm link && babel-node scripts/examples npm link react-intl",
     "preversion": "npm run clean && npm run build && npm run test:all",
-    "prepublish": "npm run clean && npm run build"
+    "prepublish": "npm run clean && npm run build",
+    "release-patch": "npm version patch -m \"Upgrade to %s\" && npm publish",
+    "release-minor": "npm version minor -m \"Upgrade to %s\" && npm publish",
+    "release-major": "npm version major -m \"Upgrade to %s\" && npm publish"
   }
 }

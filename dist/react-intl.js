@@ -2816,6 +2816,78 @@ var pluralFormatPropTypes = {
   style: oneOf(['cardinal', 'ordinal'])
 };
 
+'use strict';
+
+/**
+ * Copyright 2015, Yahoo! Inc.
+ * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+ */
+
+var REACT_STATICS = {
+    childContextTypes: true,
+    contextTypes: true,
+    defaultProps: true,
+    displayName: true,
+    getDefaultProps: true,
+    getDerivedStateFromProps: true,
+    mixins: true,
+    propTypes: true,
+    type: true
+};
+
+var KNOWN_STATICS = {
+    name: true,
+    length: true,
+    prototype: true,
+    caller: true,
+    callee: true,
+    arguments: true,
+    arity: true
+};
+
+var defineProperty$3 = Object.defineProperty;
+var getOwnPropertyNames = Object.getOwnPropertyNames;
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+var getPrototypeOf = Object.getPrototypeOf;
+var objectPrototype = getPrototypeOf && getPrototypeOf(Object);
+
+function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+    if (typeof sourceComponent !== 'string') {
+        // don't hoist over string (html) components
+
+        if (objectPrototype) {
+            var inheritedComponent = getPrototypeOf(sourceComponent);
+            if (inheritedComponent && inheritedComponent !== objectPrototype) {
+                hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+            }
+        }
+
+        var keys = getOwnPropertyNames(sourceComponent);
+
+        if (getOwnPropertySymbols) {
+            keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+        }
+
+        for (var i = 0; i < keys.length; ++i) {
+            var key = keys[i];
+            if (!REACT_STATICS[key] && !KNOWN_STATICS[key] && (!blacklist || !blacklist[key])) {
+                var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+                try {
+                    // Avoid failures from read-only properties
+                    defineProperty$3(targetComponent, key, descriptor);
+                } catch (e) {}
+            }
+        }
+
+        return targetComponent;
+    }
+
+    return targetComponent;
+}
+
+var hoistNonReactStatics_cjs = hoistNonReactStatics;
+
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -3014,7 +3086,7 @@ function injectIntl(WrappedComponent) {
   InjectIntl.WrappedComponent = WrappedComponent;
 
 
-  return InjectIntl;
+  return hoistNonReactStatics_cjs(InjectIntl, WrappedComponent);
 }
 
 /*
@@ -3106,7 +3178,7 @@ var realDefineProp$2 = function () {
     }
 }();
 
-var defineProperty$3 = realDefineProp$2 ? Object.defineProperty : function (obj, name, desc) {
+var defineProperty$4 = realDefineProp$2 ? Object.defineProperty : function (obj, name, desc) {
 
     if ('get' in desc && obj.__defineGetter__) {
         obj.__defineGetter__(name, desc.get);
@@ -3124,7 +3196,7 @@ var objCreate$2 = Object.create || function (proto, props) {
 
     for (k in props) {
         if (hop$2.call(props, k)) {
-            defineProperty$3(obj, k, props[k]);
+            defineProperty$4(obj, k, props[k]);
         }
     }
 
